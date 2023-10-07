@@ -8,3 +8,8 @@ Welcome to the official repository of Petco, a hospital for pets. This web appli
 - Appointment scheduling and reminders
 - Medication tracking
 - Built with Laravel & Filament
+
+## Built with
+
+- [Laravel](https://laravel.com/) - The PHP Framework for Web Artisans
+- [Filament](https://filamentadmin.com/) - The elegant TALL stack admin panel for Laravel
