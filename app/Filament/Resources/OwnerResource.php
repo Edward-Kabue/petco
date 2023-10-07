@@ -23,7 +23,17 @@ class OwnerResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Section::make([
+                    Forms\Components\TextInput::make('name')
+                        ->required(),
+                    Forms\Components\TextInput::make('email')
+                        ->email()
+                        ->required(),
+                    Forms\Components\TextInput::make('phone')
+                        ->tel()
+                        ->required(),
+                  
+                ])
             ]);
     }
 
@@ -31,13 +41,21 @@ class OwnerResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')
+                ->sortable()
+                ->searchable(),
+            Tables\Columns\TextColumn::make('email')
+                ->sortable()
+                ->searchable(),
+            Tables\Columns\TextColumn::make('phone')
+                ->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

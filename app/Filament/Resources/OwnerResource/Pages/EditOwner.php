@@ -16,4 +16,9 @@ class EditOwner extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+    //redirect to index when done
+    protected function getRedirectUrl(): ?string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }
