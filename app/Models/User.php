@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Filament\Panel;
+use App\Models\Role;
+use App\Models\Clinic;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -15,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\Schedule;
 
 class User extends Authenticatable implements HasTenants, FilamentUser
 {
@@ -67,6 +70,11 @@ class User extends Authenticatable implements HasTenants, FilamentUser
     {
         return $this->belongsToMany(Clinic::class);
     }
+
+    public function clinic(): BelongsToMany
+    {
+        return $this->clinics();
+    }
     public function getTenants(Panel $panel): array|Collection
     {
         return $this->clinics;
@@ -79,5 +87,9 @@ class User extends Authenticatable implements HasTenants, FilamentUser
     public function canAccessPanel(Panel $panel): bool
     {
         return true;
+    }
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return "/storage/$this->avatar_url";
     }
 }
