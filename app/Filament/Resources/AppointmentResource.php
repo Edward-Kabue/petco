@@ -9,10 +9,7 @@ use Filament\Tables\Table;
 use App\Models\Appointment;
 use App\Enums\AppointmentStatus;
 use Filament\Resources\Resource;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\AppointmentResource\Pages;
-use App\Filament\Resources\AppointmentResource\RelationManagers;
 
 class AppointmentResource extends Resource
 {
@@ -77,8 +74,8 @@ class AppointmentResource extends Resource
                     ->visible(fn (Appointment $record) => $record->status != AppointmentStatus::Canceled)
                     ->color('danger')
                     ->icon('heroicon-o-x-mark'),
-                
-                
+
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

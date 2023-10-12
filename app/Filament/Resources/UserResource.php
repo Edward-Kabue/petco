@@ -9,10 +9,7 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\UserResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\UserResource\RelationManagers;
 
 class UserResource extends Resource
 {
@@ -47,12 +44,12 @@ class UserResource extends Resource
                         ->preload()
                         ->searchable(),
                     Forms\Components\DateTimePicker::make('email_verified_at')
-                    ->native(false),
+                        ->native(false),
                     Forms\Components\TextInput::make('password')
-                    ->password()
-                    ->dehydrateStateUsing(fn ($state) => Hash::make($state))//hash the password
-                    ->dehydrated(fn ($state) => filled($state))
-                    ->required(fn (string $context): bool => $context === 'create'),//not required in the edit context
+                        ->password()
+                        ->dehydrateStateUsing(fn ($state) => Hash::make($state)) //hash the password
+                        ->dehydrated(fn ($state) => filled($state))
+                        ->required(fn (string $context): bool => $context === 'create'), //not required in the edit context
                 ])
             ]);
     }
@@ -119,7 +116,8 @@ class UserResource extends Resource
     //can only be viewed by the admin
     public static function shouldRegisterNavigation(): bool
     {
-        return false;
-       // return auth()->user()->role->name == 'admin';
+        //return false;
+        return auth()->user()->role->name == 'admin';
     }
+
 }

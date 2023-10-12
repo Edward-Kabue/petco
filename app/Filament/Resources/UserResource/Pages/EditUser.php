@@ -15,11 +15,11 @@ class EditUser extends EditRecord
         return [
             Actions\DeleteAction::make(),
         ];
-        
+
     }
     //return to index after creating it
-   protected function getRedirectUrl(): string
-   {
-       return $this->getResource()::getUrl('index');
-   }
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

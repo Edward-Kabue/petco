@@ -9,10 +9,7 @@ use App\Enums\PetType;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\PetResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\PetResource\RelationManagers;
 
 class PetResource extends Resource
 {
@@ -59,7 +56,7 @@ class PetResource extends Resource
                 Tables\Columns\TextColumn::make('type')
                     ->sortable()
                     ->searchable(),
-                
+
                 Tables\Columns\TextColumn::make('date_of_birth')
                     ->date('M d Y')
                     ->sortable(),
