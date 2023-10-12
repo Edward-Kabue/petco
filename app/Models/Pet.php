@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Pet extends Model
 {
@@ -16,11 +17,15 @@ class Pet extends Model
     ];
     public function owner(): BelongsTo
     {
-        return $this->belongsTo(Owner::class, 'owner_id');
+        return $this->belongsTo(User::class, 'owner_id');
     }
     public function appointments(): HasMany
     {
         return $this->hasMany(Appointment::class);
+    }
+    public function clinics(): BelongsToMany
+    {
+        return $this->belongsToMany(Clinic::class);
     }
 
 }

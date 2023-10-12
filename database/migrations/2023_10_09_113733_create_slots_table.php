@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Slot;
+use App\Models\Schedule;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -12,16 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('appointments', function (Blueprint $table) {
+        Schema::create('slots', function (Blueprint $table) {
             $table->id();
-            $table->string('description');
-            $table->foreignId('pet_id')
-                ->constrained('pets')
-                ->cascadeOnDelete();
-            $table->foreignIdFor(Slot::class);
-            $table->string('status')->default('created');
+            $table->time('start');
+            $table->time('end');
+            $table->string('status')->default('available');
+            $table->foreignIdFor(Schedule::class);
             $table->timestamps();
-          
         });
     }
 
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('appointments');
+        Schema::dropIfExists('slots');
     }
 };
