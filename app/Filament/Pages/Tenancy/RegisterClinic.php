@@ -19,7 +19,7 @@ class RegisterClinic extends RegisterTenant
         return $form
             ->schema([
                 TextInput::make('name'),
-                // ...
+              
             ]);
     }
     
@@ -27,7 +27,7 @@ class RegisterClinic extends RegisterTenant
     {
         $clinic = Clinic::create($data);
         
-        $clinic->members()->attach(auth()->user());
+        $clinic->users()->attach(auth()->user());
         
         return $clinic;
     }

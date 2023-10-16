@@ -12,6 +12,7 @@ use Filament\Http\Middleware\Authenticate;
 use App\Filament\Pages\Tenancy\RegisterClinic;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
+use App\Filament\Pages\Tenancy\EditClinicProfile;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
@@ -32,6 +33,7 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->tenant(Clinic::class)
             ->tenantRegistration(RegisterClinic::class)
+            ->tenantProfile(EditClinicProfile::class)
             ->colors([
                 'primary' => Color::Amber,
             ])
