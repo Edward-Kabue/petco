@@ -13,6 +13,7 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
+        //no idea what this is 
         Role::factory(4)
         ->state(new Sequence(
             ['name' => 'admin', 'description' => 'Admin User'],
