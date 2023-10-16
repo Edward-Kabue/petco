@@ -68,6 +68,10 @@ class UserResource extends Resource
                     ->badge()
                     ->numeric()
                     ->sortable(),
+                    Tables\Columns\TextColumn::make('clinics.name')
+                    ->sortable()
+                    ->searchable()
+                    ->badge(),
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->dateTime()
                     ->sortable(),
